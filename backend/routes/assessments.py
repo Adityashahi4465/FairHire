@@ -41,3 +41,30 @@ def create_assessment(data: CreateAssessmentRequest):
         "message": "Assessment created successfully",
         "assessment_id": assessment_id,
     }
+
+
+@router.get("/{assessment_id}/questions")
+def get_assessment_questions(assessment_id: str):
+
+    # 1️⃣ Fetch assessment details
+    assessment_res = (
+        supabase.table("assessments")
+        .select("id, title, description")
+        .eq("id", assessment_id)
+        .single()
+        .execute()
+    )
+
+    if not assessment_res.data:
+        raise HTTPException(status_code=404, detail="Assessment not found")
+
+    # 2️⃣ Fetch questions ordered
+    questions_res = (
+        supabase.table("assessment_questions")
+        .select("id, question_text, duration_seconds, question_order")
+        .eq("assessment_id", assessment_id)
+        .order("question_order")
+        .execute()
+    )
+
+    return {"assessment": assessment_res.data, "questions": questions_res.data}
