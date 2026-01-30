@@ -11,6 +11,7 @@
   "dependencies": {
     "node": "^25.5.0",
     "pinia": "^3.0.4",
+    "recordrtc": "^5.6.2",
     "vue": "^3.5.24",
     "vue-router": "^4.6.4",
     "vue-tippy": "^6.7.1"
