@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+
+baseurl = "http://127.0.0.1:8000";
 export const useAssessmentStore = defineStore("AssessmentStore", {
   state: () => ({
     assessmentDetails: null,
@@ -32,7 +34,7 @@ export const useAssessmentStore = defineStore("AssessmentStore", {
   actions: {
     async getAssessmentByJobID(job_id, params = {}) {
       try {
-        const res = await axios.get(`jobs/${job_id}/assessments`, {
+        const res = await axios.get(`${baseurl}/${job_id}/assessments`, {
           params: params,
         });
         this.assessmentDetails = res?.data;

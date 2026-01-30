@@ -1,8 +1,8 @@
 <script setup>
 import { ref, computed, watch } from "vue";
-import { InfoIcon } from "@ambitionui/icons";
-import { colors, helpers } from "@ambitionui/theme";
+import { colors, helpers } from "../theme";
 import { useField } from "vee-validate";
+import { InfoIcon } from "../../icons";
 const requiredField = ref("");
 const props = defineProps({
   value: {

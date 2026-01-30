@@ -1,50 +1,50 @@
 <script setup>
-import { colors } from '@ambitionui/theme'
-import { defineProps } from 'vue'
+import { colors } from "../../theme/";
+import { defineProps } from "vue";
 defineProps({
   type: {
     type: String,
-    default: 'button'
+    default: "button",
   },
   value: {
     type: String,
-    required: true
+    required: true,
   },
   icon: {
     type: Boolean,
-    default: false
+    default: false,
   },
   isEnabled: {
     type: Boolean,
-    default: true
+    default: true,
   },
   px: {
     type: String,
-    default: '16px'
+    default: "16px",
   },
   py: {
     type: String,
-    default: '8px'
+    default: "8px",
   },
   bgColor: {
     type: String,
-    default: colors['ambition-fandango-color']
+    default: colors["fandango-color"],
   },
   textColor: {
     type: String,
-    default: 'white'
+    default: "white",
   },
   iconType: {
     type: String,
-    default: 'Forward'
+    default: "Forward",
   },
   action: {
     type: Function,
     default: () => {
-      return
-    }
-  }
-})
+      return;
+    },
+  },
+});
 </script>
 
 <template>
@@ -55,7 +55,7 @@ defineProps({
       isEnabled
         ? 'cursor-pointer border-white'
         : 'bg-secondary-color border-secondary-color text-white',
-      icon ? 'gap-2' : ''
+      icon ? 'gap-2' : '',
     ]"
     :disabled="!isEnabled"
     :style="{
@@ -63,15 +63,16 @@ defineProps({
       color: isEnabled ? textColor : '',
       paddingRight: `${px}`,
       paddingLeft: `${px}`,
-      padding: `${py} ${px}`
+      padding: `${py} ${px}`,
     }"
     @click="$emit('action')"
   >
     <slot v-if="iconType === 'Backward'" name="icon"></slot>
 
-    <span class="text-sm font-medium leading-[21px] whitespace-nowrap text-center">{{
-      value
-    }}</span>
+    <span
+      class="text-sm font-medium leading-[21px] whitespace-nowrap text-center"
+      >{{ value }}</span
+    >
     <slot v-if="iconType === 'Forward'" name="icon"></slot>
   </button>
 </template>
