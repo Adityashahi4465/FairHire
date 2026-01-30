@@ -72,84 +72,17 @@ const handleStartAssessment = async () => {
     AssessmentStore.isAssessmentSubmitted = false;
     const type = route.params.type;
     const assessmentId = route.params.assessmentId;
-    if (companyData.value?.workflow?.kyc_verification) {
-      let imageUrl = await captureImageFromVideo(videoRef.value, "url");
-      imageUrl = imageUrl.split(",")[1];
-      await AuthStore.uploadSelfie(imageUrl);
-    }
 
     const query = {
       params: {
         assessmentId: assessmentId,
       },
-      query: {
-        language: route.query?.language || "english",
-        is_proctoring_enabled: route?.query?.is_proctoring_enabled || false,
-        is_kyc_verification_enabled:
-          route?.query?.is_kyc_verification_enabled || false,
-        show_assessment_instruction:
-          route.query?.show_assessment_instruction || "true",
-      },
     };
-    if (type == "multilingual") {
-      query.query.multilingual_assessment_language =
-        AssessmentStore.multilingualAssessmentLanguage?.toLowerCase() ||
-        "english";
-    }
 
-    if (type == "functional") {
-      router.push({
-        name: "CandidateFunctionalAssessmentView",
-        ...query,
-      });
-    } else if (type == "english") {
-      router.push({
-        name: "CandidateEnglishAssessmentView",
-        ...query,
-      });
-    } else if (type == "multilingual") {
-      router.push({
-        name: "CandidateMultilingualAssessmentView",
-        ...query,
-      });
-    } else if (type == "ctq") {
-      router.push({
-        name: "CandidateCTQAssessmentView",
-        ...query,
-      });
-    } else if (type == "psychometric") {
-      router.push({
-        name: "CandidatePsychometricAssessmentView",
-        ...query,
-      });
-    } else if (type == "coding" || type == "algorise") {
-      router.push({
-        name: "CandidateAlgoriseAssessmentView",
-        ...query,
-      });
-    } else if (type == "typing") {
-      router.push({
-        name: "CandidateTypingAssessmentView",
-        ...query,
-      });
-    } else if (type == "excel") {
-      router.push({
-        name: "CandidateExcelAssessmentView",
-        ...query,
-      });
-    } else if (type == "oneway") {
-      await CompanyStore.onewayCreditDeduction(
-        AssessmentStore.job?.proctoring_settings?.is_enabled,
-        AssessmentStore.job?.proctoring_settings?.proctoring_type,
-        assessmentId,
-        route.params.jobId,
-        allow_another_round.value,
-      );
-      router.push({
-        name: "CandidateOnewayAssessmentView",
-        ...query,
-      });
-    }
+    router.push({
+      name: "CandidateOnewayAssessmentView",
+      ...query,
+    });
   } catch (error) {
     console.log(error);
     AlertStore.showAlert(

@@ -1,0 +1,15 @@
+export default {
+  "fandango-color": "rgba(125, 73, 150, 1)",
+  "ambition-fandango-faded-color": "rgba(235, 223, 234, 1)",
+  "error-color": "rgba(210, 34, 34, 1)",
+  "error-faded-color": "rgba(255, 222, 222, 1)",
+  "surface-color": "rgba(248, 242, 250, 1)",
+  "onsurface-color": "rgba(76, 68, 77, 1)",
+  "modal-backdrop": "rgba(0, 0, 0, 0.5)",
+  "onbackground-color": "rgba(30, 27, 30, 1)",
+  "secondary-color": "rgba(105, 89, 109, 1)",
+  "disabled-color": "rgba(172, 163, 176, 1)",
+  "hint-color": "rgba(172, 163, 176, 1)",
+  "outline-color": "rgba(218, 214, 220, 1)",
+  "decorative-color": "rgba(0, 19, 37, 1)",
+};
